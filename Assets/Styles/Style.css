@@ -1,0 +1,8 @@
+/* Hide the inactive slides */
+.slider-item {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .active {
+    opacity: 1;
+  }
