@@ -1,3 +1,72 @@
+<?php
+// Database connection details
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "dvsmining_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $conn->real_escape_string($_POST['name']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $type = $conn->real_escape_string($_POST['type']);
+    $message = $conn->real_escape_string($_POST['message']);
+
+    // Check for existing entry
+    $checkSql = "SELECT * FROM contact_messages WHERE email='$email'";
+    $result = $conn->query($checkSql);
+
+    if ($result->num_rows > 0) {
+        echo "<script>alert('This email has already been used to submit a message.');</script>";
+    } else {
+        // Insert data into the database
+        $sql = "INSERT INTO contact_messages (name, email, type, message) VALUES ('$name', '$email', '$type', '$message')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "
+            <div id='successPopup' class='fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50'>
+                <div class='bg-white p-8 rounded-lg shadow-lg text-center'>
+                    <img src='../Assets/Images/check.png' alt='Success' class='w-16 h-16 mx-auto mb-4'>
+                    <h2 class='text-2xl font-bold text-green-600 mb-4'>Thanks for submission</h2>
+                    <button onclick='closePopup()' class='bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600'>Close</button>
+                </div>
+            </div>
+            <script>
+                function closePopup() {
+                    document.getElementById('successPopup').style.display = 'none';
+                }
+            </script>
+            ";
+        } else {
+            echo "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
+        }
+    }
+
+    // Get visitor's IP address
+$ip_address = $_SERVER['REMOTE_ADDR'];
+
+// Insert visitor data into the table
+$stmt = $conn->prepare("INSERT INTO visitors (ip_address) VALUES (?)");
+$stmt->bind_param("s", $ip_address);
+$stmt->execute();
+
+$stmt->close();
+$conn->close();
+}
+?>
+
+
+
+
+
 <!doctype html>
 <html>
 <head>
@@ -102,34 +171,30 @@
         <div class="flex flex-col md:flex-row gap-10">
             <!-- Form Section -->
             <div class="lg:w-2/3 md:w-2/3">
-                <form class="bg-white p-8 rounded-lg shadow-md">
-                    <h2 class="text-gray-900 text-lg mb-5 font-bold text-2xl">Enquiry / Suggestion Form</h2>
-                    <!-- Name Field -->
-                    <div class="mb-4">
-                        <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
-                        <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-orange-500 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                    </div>
-                    <!-- Email Field -->
-                    <div class="mb-4">
-                        <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-                        <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-orange-500 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                    </div>
-                    <!-- Option Field -->
-                    <div class="mb-4">
-                        <label for="type" class="leading-7 text-sm text-gray-600">Select Type</label>
-                        <select id="type" name="type" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-orange-500 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                            <option value="enquiry">Enquiry</option>
-                            <option value="suggestion">Suggestion</option>
-                        </select>
-                    </div>
-                    <!-- Message Field -->
-                    <div class="mb-4">
-                        <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
-                        <textarea id="message" name="message" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-orange-500 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out" rows="7"></textarea>
-                    </div>
-                    <!-- Submit Button -->
-                    <button type="submit" class="text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded text-lg">Submit</button>
-                </form>
+            <form action="" method="POST" class="bg-white p-8 rounded-lg shadow-md">
+    <h2 class="text-gray-900 text-lg mb-5 font-bold text-2xl">Enquiry / Suggestion Form</h2>
+    <div class="mb-4">
+        <label for="name" class="leading-7 text-sm text-gray-600">Name</label>
+        <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-orange-500 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
+    </div>
+    <div class="mb-4">
+        <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+        <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-orange-500 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
+    </div>
+    <div class="mb-4">
+        <label for="type" class="leading-7 text-sm text-gray-600">Select Type</label>
+        <select id="type" name="type" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-orange-500 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <option value="enquiry">Enquiry</option>
+            <option value="suggestion">Suggestion</option>
+        </select>
+    </div>
+    <div class="mb-4">
+        <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+        <textarea id="message" name="message" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:bg-white focus:border-orange-500 text-base outline-none text-gray-700 py-2 px-3 leading-8 transition-colors duration-200 ease-in-out" rows="7"></textarea>
+    </div>
+    <button type="submit" class="text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded text-lg">Submit</button>
+</form>
+
             </div>
             <!-- Map Section -->
             <div class="lg:w-2/3 md:w-2/3">

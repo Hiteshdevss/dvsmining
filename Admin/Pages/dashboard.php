@@ -1,3 +1,14 @@
+<?php
+session_start(); // Start the session
+
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: ../index.php"); // Redirect to login if not logged in
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +27,7 @@
 <body class="bg-gray-100">
     <div class="flex h-screen overflow-hidden">
         <!-- Slim Sidebar -->
-        <?php include '../Inc/sidebar.php'; ?>
+        <?php include '../inc/sidebar.php'; ?>
 
         <!-- Navbar -->
         <div class="flex-1 w-full h-full overflow-hidden overflow-y-auto">
@@ -27,32 +38,7 @@
         <main class="p-4 md:p-6 overflow-y-auto">
                 <p class="text-2xl font-bold text-center md:text-justify">Namaste 🙏 <span class="text-orange-600">Ratandip</span> Ji</p>
                 <p class="mt-2 text-center md:text-justify">Your hard work and dedication inspire us all. Keep up the amazing work!</p>
-                <div class="mt-4 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                    <div class="bg-orange-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex justify-between">
-                        <h1 class="text-2xl font-medium text-orange-600">Blogs/News Posted</h1>
-                        <h3 class="text-2xl font-extrabold text-orange-600">18</h3>
-                    </div>
-                    <div class="bg-red-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex justify-between">
-                        <h1 class="text-2xl font-medium text-red-600">Total Enquiries</h1>
-                        <h3 class="text-2xl font-extrabold text-red-600">1000</h3>
-                    </div>
-                    <div class="bg-blue-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex justify-between">
-                        <h1 class="text-2xl font-medium text-blue-900">Total Suggestion</h1>
-                        <h3 class="text-2xl font-extrabold text-blue-900">1000</h3>
-                    </div>
-                    <div class="bg-green-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex justify-between">
-                        <h1 class="text-2xl font-medium text-green-600">Total Jobs Posted</h1>
-                        <h3 class="text-2xl font-extrabold text-green-600">28</h3>
-                    </div>
-                    <div class="bg-cyan-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex justify-between">
-                        <h1 class="text-2xl font-medium text-cyan-600">Total Applications</h1>
-                        <h3 class="text-2xl font-extrabold text-cyan-600">1650</h3>
-                    </div>
-                    <div class="bg-pink-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex justify-between">
-                        <h1 class="text-2xl font-medium text-pink-600">Website Visitors</h1>
-                        <h3 class="text-2xl font-extrabold text-pink-600">0</h3>
-                    </div>
-                </div>
+                <?php include '../inc/report.php'; ?>
         <!-- Charts Section -->
         <div class="mt-8 grid gap-6 grid-cols-1 lg:grid-cols-2 z-0">
             <!-- Blog & News Chart -->

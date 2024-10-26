@@ -16,20 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = md5($_POST['password']); // MD5 encryption
 
-    // Check credentials
-    $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+    // Check if user already exists
+    $sql = "SELECT * FROM users WHERE email='$email'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Start session
-        session_start();
-        $_SESSION['email'] = $email; // Store user email in session
-
-        // Redirect to dashboard page after successful login
-        header("Location: ./pages/dashboard.php");
-        exit(); // Ensure script stops executing after redirect
+        echo "<script>alert('User already exists!');</script>";
     } else {
-        echo "<script>alert('Invalid email or password!');</script>";
+        $sql = "INSERT INTO users (email, password) VALUES ('$email', '$password')";
+        
+        if ($conn->query($sql) === TRUE) {
+            // Redirect to login page after successful registration
+            header("Location: index.php");
+            exit(); // Ensure script stops executing after redirect
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }
 }
 
@@ -41,7 +43,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - DVSMining</title>
+    <title>Register - DVSMining</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
@@ -59,7 +61,7 @@ $conn->close();
             <img src="./Asset/Image/D-logo.png" class="w-44 mx-auto" alt="DVSMining Logo">
         </div>
 
-        <form method="post" action="" id="loginForm" class="space-y-6">
+        <form method="post" action="" class="space-y-6">
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input 
@@ -80,7 +82,7 @@ $conn->close();
                     name="password" 
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
                     required
-                    autocomplete="current-password"
+                    autocomplete="new-password"
                 >
             </div>
 
@@ -88,13 +90,13 @@ $conn->close();
                 type="submit" 
                 class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
             >
-                Sign in
+                Register
             </button>
         </form>
 
         <p class="mt-6 text-center text-sm text-gray-600">
-            Don't have an account? 
-            <a href="#" class="font-medium text-orange-500 hover:text-orange-400">Contact Admin</a>
+            Already have an account? 
+            <a href="index.php" class="font-medium text-orange-500 hover:text-orange-400">Login</a>
         </p>
     </div>
 </body>

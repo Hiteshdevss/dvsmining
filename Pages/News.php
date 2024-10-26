@@ -5,6 +5,18 @@ include('../Inc/dbcon.php');
 // Fetch news posts from the database
 $query = "SELECT * FROM news_post ORDER BY created_at DESC";
 $result = mysqli_query($conn, $query);
+
+// Get visitor's IP address
+$ip_address = $_SERVER['REMOTE_ADDR'];
+
+// Insert visitor data into the table
+$stmt = $conn->prepare("INSERT INTO visitors (ip_address) VALUES (?)");
+$stmt->bind_param("s", $ip_address);
+$stmt->execute();
+
+$stmt->close();
+$conn->close();
+
 ?>
 
 <!doctype html>

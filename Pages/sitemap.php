@@ -1,3 +1,20 @@
+<?php
+
+include '../Inc/dbcon.php';
+
+// Get visitor's IP address
+$ip_address = $_SERVER['REMOTE_ADDR'];
+
+// Insert visitor data into the table
+$stmt = $conn->prepare("INSERT INTO visitors (ip_address) VALUES (?)");
+$stmt->bind_param("s", $ip_address);
+$stmt->execute();
+
+$stmt->close();
+$conn->close();
+
+?>
+
 <!doctype html>
 <html>
 <head>
