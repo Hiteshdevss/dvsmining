@@ -1,6 +1,9 @@
 <?php
 // Database connection
-include "../Inc/dbcon.php";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "dvsmining_db";
 
 // Form data handling
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

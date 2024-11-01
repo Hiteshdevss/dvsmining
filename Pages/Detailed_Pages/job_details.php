@@ -1,3 +1,19 @@
+<?php
+
+include '../../Inc/dbcon.php';
+
+// Get visitor's IP address
+$ip_address = $_SERVER['REMOTE_ADDR'];
+
+// Insert visitor data into the table
+$stmt = $conn->prepare("INSERT INTO visitors (ip_address) VALUES (?)");
+$stmt->bind_param("s", $ip_address);
+$stmt->execute();
+
+$stmt->close();
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,6 +21,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Job Details - DVSMining</title>
+
+    <!-- Include Quill stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50">
 

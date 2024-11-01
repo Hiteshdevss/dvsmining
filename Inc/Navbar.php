@@ -38,7 +38,7 @@
     
             <!-- Media dropdown -->
             <div class="relative group z-20">
-              <a href="../Pages/About.php" class="p-2 lg:px-4 md:mx-2 text-gray-900 rounded hover:bg-orange-100 hover:text-orange-700 transition-colors duration-300 flex items-center">
+              <a href="#" class="p-2 lg:px-4 md:mx-2 text-gray-900 rounded hover:bg-orange-100 hover:text-orange-700 transition-colors duration-300 flex items-center">
                 Media
                 <svg class="ml-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>

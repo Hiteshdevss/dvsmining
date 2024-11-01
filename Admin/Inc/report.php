@@ -62,6 +62,17 @@ if ($resultApplications->num_rows > 0) {
     $totalApplications = $row['total_applications'];
 }
 
+// Query to count total website visitors
+$sqlVisitorCount = "SELECT COUNT(DISTINCT ip_address) AS total_visitors FROM visitors";
+$resultVisitorCount = $conn->query($sqlVisitorCount);
+$totalVisitors = 0;
+
+if ($resultVisitorCount->num_rows > 0) {
+    $row = $resultVisitorCount->fetch_assoc();
+    $totalVisitors = $row['total_visitors'];
+}
+
+
 $conn->close();
 ?>
 
@@ -87,7 +98,8 @@ $conn->close();
         <h3 class="text-2xl font-extrabold text-cyan-600"><?php echo $totalApplications; ?></h3>
     </div>
     <div class="bg-pink-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex justify-between">
-        <h1 class="text-2xl font-medium text-pink-600">Website Visitors</h1>
-        <h3 class="text-2xl font-extrabold text-pink-600">0</h3>
-    </div>
+    <h1 class="text-2xl font-medium text-pink-600">Website Visitors</h1>
+    <h3 class="text-2xl font-extrabold text-pink-600"><?php echo $totalVisitors; ?></h3>
+</div>
+
 </div>

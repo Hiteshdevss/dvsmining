@@ -140,9 +140,6 @@ $conn->close();
                     echo '<p class="text-gray-600 text-center">No job listings found for the current search criteria.</p>';
                 }
 
-                // Close connection
-                $stmt->close();
-                $conn->close();
                 ?>
             </div>
 
@@ -167,7 +164,9 @@ $conn->close();
     <?php include '../Inc/Footer.php';?>
 
     <!-- Whatsapp -->
-    <?php include '../Inc/Whatsapp.php';?>
+    <?php include '../Inc/Whatsapp.php';
+    
+    ?>
 
 </body>
 </html>

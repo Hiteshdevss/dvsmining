@@ -72,7 +72,7 @@ $conn->close();
           while ($row = mysqli_fetch_assoc($result)) {
         ?>
           <div class="bg-gray-50 rounded-lg shadow-lg p-6 min-w-[250px] md:min-w-[300px]">
-            <img src="<?php echo htmlspecialchars($row['main_image']); ?>" alt="Blog Image" class="rounded-t-lg mb-4">
+            <img src="../Admin/pages/<?php echo htmlspecialchars($row['main_image']); ?>" alt="Blog Image" class="rounded-t-lg mb-4">
             <h3 class="text-2xl font-bold text-gray-900 mb-2"><?php echo htmlspecialchars($row['title']); ?></h3>
             <p class="text-gray-600 mb-4">
               <?php echo htmlspecialchars($row['description']); ?>

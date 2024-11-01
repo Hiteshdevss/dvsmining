@@ -22,6 +22,26 @@ if (isset($_GET['id'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <title><?php echo htmlspecialchars($news_post['title']); ?> - DVSMining</title>
+
+  <!-- Include Quill stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<!-- Custom CSS to remove border and set text size -->
+<style>
+  /* Remove Quill editor border */
+  #editor-container .ql-editor {
+    border: none;
+    padding: 0;
+    font-size: 16px; /* Adjust font size to match your UI */
+    line-height: 1.5; /* Adjust line height for readability */
+  }
+
+  /* Remove default padding around editor */
+  #editor-container {
+    border: none;
+  }
+</style>
+
 </head>
 <body class="bg-orange-50">
 
@@ -47,15 +67,15 @@ if (isset($_GET['id'])) {
           <b>Author:</b> <?php echo htmlspecialchars($news_post['author']); ?> | <b>Date:</b> <?php echo date('F j, Y', strtotime($news_post['created_at'])); ?>
         </p>
         <div class="bg-gray-50 p-8 rounded-lg shadow-lg">
-          <img src="<?php echo htmlspecialchars($news_post['main_image']); ?>" alt="Blog Image" class="w-full rounded-lg mb-6">
+          <img src="../../Admin/pages/<?php echo htmlspecialchars($news_post['main_image']); ?>" alt="Blog Image" class="w-full rounded-lg mb-6">
           <h2 class="text-3xl font-bold text-gray-900 mb-4">Introduction</h2>
           <p class="text-gray-700 mb-6">
             <?php echo nl2br(htmlspecialchars($news_post['description'])); ?>
           </p>
           <h2 class="text-3xl font-bold text-gray-900 mb-4">Main Content</h2>
-          <p class="text-gray-700 mb-6">
+          <p class="text-gray-700 mb-6" id="editor-container">
             <!-- Add more detailed content if needed -->
-            <?php echo nl2br(htmlspecialchars($news_post['main_content'])); ?>
+            <?php echo nl2br(strip_tags($news_post['main_content'])); ?>
           </p>
           <blockquote class="border-l-4 border-orange-600 pl-4 text-gray-700 italic mb-6">
             "A relevant quote to add value and context to the blog post."
@@ -117,6 +137,22 @@ if (isset($_GET['id'])) {
 
   <!-- WhatsApp -->
   <?php include '../../Inc/Whatsapp.php'; ?>
+
+    <!-- Include Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script>
+  // Initialize Quill editor
+  var quill = new Quill('#editor-container', {
+    theme: 'snow',   // You can also use 'bubble' theme
+    readOnly: true,  // Set to true if you just want to display formatted content
+    modules: {
+      toolbar: false // Hide toolbar for read-only display
+    }
+  });
+
+  // If needed, you can load dynamic HTML content into Quill
+  quill.root.innerHTML = `<?php echo htmlspecialchars_decode($blog_post['main_content']); ?>`;
+</script>
 
   <script src="../../Assets/Scripts/index.js"></script>
 

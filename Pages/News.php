@@ -61,7 +61,7 @@ $conn->close();
     <img src="../Assets/Images/Banner/Mobile/Blog.png" alt="" class="mt-2 md:hidden">
   </div>
 
-  <!-- Blog Section -->
+  <!-- News og Section -->
   <section class="m-5 md:m-0 md:mr-28 md:ml-28 py-8" data-aos="fade-up">
     <h2 class="text-4xl md:text-5xl font-bold text-center text-orange-600 mb-4">Trending News</h2>
     <p class="mb-6 text-center text-xl">Latest news and insights</p>
@@ -72,7 +72,7 @@ $conn->close();
           while ($row = mysqli_fetch_assoc($result)) {
         ?>
           <div class="bg-gray-50 rounded-lg shadow-lg p-6 min-w-[250px] md:min-w-[300px]">
-            <img src="<?php echo htmlspecialchars($row['main_image']); ?>" alt="Blog Image" class="rounded-t-lg mb-4">
+            <img src="../Admin/pages/<?php echo htmlspecialchars($row['main_image']); ?>" alt="Blog Image" class="rounded-t-lg mb-4">
             <h3 class="text-2xl font-bold text-gray-900 mb-2"><?php echo htmlspecialchars($row['title']); ?></h3>
             <p class="text-gray-600 mb-4">
               <?php echo htmlspecialchars($row['description']); ?>
