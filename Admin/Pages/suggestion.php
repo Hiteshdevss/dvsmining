@@ -52,13 +52,6 @@
         </div>
     </div>
     
-    <!-- Pie Chart for Suggestion Types -->
-    <div class="bg-white p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold mb-4">Suggestion Types</h3>
-        <div class="relative" style="height: 300px;">
-            <canvas id="suggestionTypeChart" class="absolute inset-0 w-full h-full"></canvas>
-        </div>
-    </div>
 </div>
 
 <!-- Chart.js Script -->
@@ -92,32 +85,6 @@
         scales: {
             y: {
                 beginAtZero: true
-            }
-        }
-    });
-
-    // Suggestion Types Pie Chart
-    const suggestionTypeCtx = document.getElementById('suggestionTypeChart').getContext('2d');
-    createResponsiveChart(suggestionTypeCtx, 'pie', {
-        labels: ['General', 'Service', 'Project'],
-        datasets: [{
-            data: [40, 30, 30],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.8)',
-                'rgba(54, 162, 235, 0.8)',
-                'rgba(255, 206, 86, 0.8)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)'
-            ],
-            borderWidth: 1
-        }]
-    }, {
-        plugins: {
-            legend: {
-                position: 'right'
             }
         }
     });

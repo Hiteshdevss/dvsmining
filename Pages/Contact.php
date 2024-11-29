@@ -1,10 +1,9 @@
 <?php
 // Database connection details
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "dvsmining_db";
-
+$username = "u345348146_DVSMining";
+$password = "Hitesh1100@";
+$dbname = "u345348146_DVSMining";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -205,29 +204,30 @@ $conn->close();
                 <div class="flex md:flex-row flex-col justify-between">
                     <div class="mt-10 bg-white p-8 rounded-lg shadow-md mr-0 md:mr-5">
                         <h1 class="text-gray-900 text-xl mb-2 font-bold">Office Details</h1>
-                        <p class="text-gray-600 text-lg mt-2">123 Main St, Anytown, USA</p>
-                        <p class="text-gray-600 text-lg">123-456-7890</p>
+                        <p class="text-gray-600 text-lg mt-2"> KALIAPANI Chromite Mines- Odisha
+                        Surabhi Mines- Pindwara Rajasthan</p>
+                        
                         
                     </div>
                     <div class="mt-10 bg-white p-8 rounded-lg shadow-md">
                         <h1 class="text-gray-900 text-xl mb-2 font-bold">Office Details</h1>
-                        <p class="text-gray-600 text-lg mt-2">123 Main St, Anytown, USA</p>
-                        <p class="text-gray-600 text-lg">123-456-7890</p>
+                        <p class="text-gray-600 text-lg mt-2">Madhyapradesh - sausar chindwara</p>
+                        
                     </div>
                     
                 </div>
                 <div class="flex md:flex-row flex-col justify-between">
                     <div class="mt-10 bg-white p-8 rounded-lg shadow-md mr-0 md:mr-5">
                         <h1 class="text-gray-900 text-xl mb-2 font-bold">Office Details</h1>
-                        <p class="text-gray-600 text-lg mt-2">123 Main St, Anytown, USA</p>
-                        <p class="text-gray-600 text-lg">123-456-7890</p>
+                        <p class="text-gray-600 text-lg mt-2">Moil Nagpur- Gumgaon; Mansar; Kandri, Beldongri mines</p>
+                        
                         
                     </div>
-                    <div class="mt-10 bg-white p-8 rounded-lg shadow-md">
+                    <!-- <div class="mt-10 bg-white p-8 rounded-lg shadow-md">
                         <h1 class="text-gray-900 text-xl mb-2 font-bold">Office Details</h1>
                         <p class="text-gray-600 text-lg mt-2">123 Main St, Anytown, USA</p>
                         <p class="text-gray-600 text-lg">123-456-7890</p>
-                    </div>
+                    </div> -->
                     
                 </div>
             </div>

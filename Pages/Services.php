@@ -77,15 +77,15 @@ $conn->close();
         <!-- Service 4 -->
         <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up">
           <img src="../Assets/Images/Services/Mineral Processing.jpg" alt="Service 4" class="h-48 w-full object-cover rounded-lg mb-4">
-          <h3 class="text-xl font-semibold mb-2 text-orange-500">Mineral Processing</h3>
+          <h3 class="text-xl font-semibold mb-2 text-orange-500">Shaft sinking/ incline decline mining services for underground mine</h3>
           <p class="text-gray-600">Efficient mineral processing techniques to maximize resource recovery.</p>
         </div>
   
         <!-- Service 5 -->
         <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up">
           <img src="../Assets/Images/Services/Equipment Rental.jpeg" alt="Service 5" class="h-48 w-full object-cover rounded-lg mb-4">
-          <h3 class="text-xl font-semibold mb-2 text-orange-500">Equipment Rental</h3>
-          <p class="text-gray-600">Providing specialized mining equipment on lease for various mining activities.</p>
+          <h3 class="text-xl font-semibold mb-2 text-orange-500">Open caste mining services</h3>
+          <p class="text-gray-600">Specialized open cast mining services for efficient surface mineral extraction.</p>
         </div>
   
         <!-- Service 6 -->
@@ -98,8 +98,8 @@ $conn->close();
         <!-- Service 7 -->
         <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up">
           <img src="../Assets/Images/Services/Logistics Management.jpeg" alt="Service 7" class="h-48 w-full object-cover rounded-lg mb-4">
-          <h3 class="text-xl font-semibold mb-2 text-orange-500">Logistics Management</h3>
-          <p class="text-gray-600">End-to-end logistics support for seamless mining operations.</p>
+          <h3 class="text-xl font-semibold mb-2 text-orange-500">Expert in Brench Processing Mining</h3>
+          <p class="text-gray-600">Effective logistics management for efficient supply chain management.</p>
         </div>
 
         <!-- Service 8 -->
@@ -112,8 +112,22 @@ $conn->close();
         <!-- Service 9 -->
         <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up">
           <img src="../Assets/Images/Services/Geological Mapping.jpeg" alt="Service 9" class="h-48 w-full object-cover rounded-lg mb-4">
-          <h3 class="text-xl font-semibold mb-2 text-orange-500">Geological Mapping</h3>
+          <h3 class="text-xl font-semibold mb-2 text-orange-500">Geological Survey Mining Services</h3>
           <p class="text-gray-600">Advanced mapping techniques for precise geological data analysis.</p>
+        </div>
+
+        <!-- Service 10 -->
+        <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up">
+          <img src="../Assets/Images/Services/Resource Optimization.jpeg" alt="Service 10" class="h-48 w-full object-cover rounded-lg mb-4">
+          <h3 class="text-xl font-semibold mb-2 text-orange-500">Resource Optimization</h3>
+          <p class="text-gray-600">Optimizing resource usage to maximize project efficiency and sustainability.</p>
+        </div>
+
+        <!-- Service 10 -->
+        <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up">
+          <img src="../Assets/Images/Services/Resource Optimization.jpeg" alt="Service 10" class="h-48 w-full object-cover rounded-lg mb-4">
+          <h3 class="text-xl font-semibold mb-2 text-orange-500">Design & Drawing Mining Services</h3>
+          <p class="text-gray-600">Optimizing resource usage to maximize project efficiency and sustainability.</p>
         </div>
 
         <!-- Service 10 -->

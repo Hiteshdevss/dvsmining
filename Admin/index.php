@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root"; // your MySQL username
-$password = ""; // your MySQL password
-$dbname = "dvsmining_db";
+$username = "u345348146_DVSMining";
+$password = "Hitesh1100@";
+$dbname = "u345348146_DVSMining";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -50,9 +50,9 @@
             <main class="flex-1 p-6">
                 <?php
                  $servername = "localhost";
-                 $username = "root";
-                 $password = "";
-                 $dbname = "dvsmining_db";
+                 $username = "u345348146_DVSMining";
+                 $password = "Hitesh1100@";
+                 $dbname = "u345348146_DVSMining";
 
                  $conn = new mysqli($servername, $username, $password, $dbname);
                  if ($conn->connect_error) {

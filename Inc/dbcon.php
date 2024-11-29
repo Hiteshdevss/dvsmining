@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$database = "dvsmining_db";
+$username = "u345348146_DVSMining";
+$password = "Hitesh1100@";
+$dbname = "u345348146_DVSMining";
 
 $conn = new mysqli($servername, $username, $password, $database);
 

@@ -103,6 +103,11 @@
                   >Our Suppliers</a
                 >
               </li>
+              <li class="mb-2">
+                <a href="../Pages/Inspiration.php" class="text-white hover:text-orange-600"
+                  >Our Inspiration</a
+                >
+              </li>
             </ul>
           </div>
           <div class="w-full md:w-auto text-center md:text-left mb-6">
@@ -114,7 +119,7 @@
             </h6>
             <ul class="list-none">
               <li class="mb-2">
-                <a href="#" class="text-white hover:text-orange-600">Cookie Policies</a>
+                <a href="../Pages/Cookies.php" class="text-white hover:text-orange-600">Cookie Policies</a>
               </li>
               <li class="mb-2">
                 <a href="../Pages/Terms.php" class="text-white hover:text-orange-600"
@@ -122,7 +127,7 @@
                 >
               </li>
               <li class="mb-2">
-                <a href="../Pages/Privacy.php" class="text-white hover:text-orange-600"
+                <a href="../Pages/PrivacyPolicy.php" class="text-white hover:text-orange-600"
                   >Privacy Policy</a
                 >
               </li>
@@ -145,7 +150,7 @@
                 >
               </li>
               <li class="mb-2">
-                <a href="../Pages/Career.php" class="text-white hover:text-orange-600"
+                <a href="../Pages/job_list.php" class="text-white hover:text-orange-600"
                   >Careers</a
                 >
               </li>

@@ -1,3 +1,32 @@
+<?php
+// Database connection
+$servername = "localhost";
+$username = "u345348146_DVSMining";
+$password = "Hitesh1100@";
+$dbname = "u345348146_DVSMining";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Ensure 'status' column exists in the 'applications' table
+$conn->query("ALTER TABLE applications ADD COLUMN IF NOT EXISTS status VARCHAR(20) DEFAULT 'New'");
+
+// Search functionality
+$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
+$where = '';
+if (!empty($search)) {
+    $where = "WHERE name LIKE '%$search%' OR email LIKE '%$search%' OR phone LIKE '%$search%'";
+}
+
+// Fetch applications - removed join with jobs table
+$sql = "SELECT * FROM applications $where ORDER BY applied_at DESC";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,24 +37,19 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        #sidebar {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Modal styles */
+        #sidebar { transition: transform 0.3s ease-in-out; }
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
+            display: none;
+            position: fixed;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+            background-color: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
-            z-index: 50; /* Ensure it's above other content */
+            z-index: 50;
         }
-
         .modal-content {
             background-color: white;
             padding: 20px;
@@ -33,7 +57,6 @@
             width: 90%;
             max-width: 600px;
         }
-
         .close {
             float: right;
             font-size: 20px;
@@ -47,98 +70,30 @@
         <?php include '../Inc/sidebar.php'; ?>
        
         <div class="flex-1 w-full h-full overflow-hidden overflow-y-auto">
-        <!-- Navbar -->
-        <?php include '../Inc/navbar.php'; ?>
+            <!-- Navbar -->
+            <?php include '../Inc/navbar.php'; ?>
 
             <!-- Form Content -->
             <main class="flex-1 p-6">
-            
-            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-                <h2 class="text-xl font-semibold mb-4 md:mb-0">List of Job Applications</h2>
-                <div class="flex w-full md:w-auto">
-                    <input type="text" class="border border-gray-300 rounded-l-lg p-2 w-full md:w-64" placeholder="Search...">
-                    <button class="bg-orange-600 text-white px-4 py-2 rounded-r-lg">Search</button>
-                </div>
-            </div>
-
-
-
-                <!-- Job and Applicant Statistics -->
-                <div class="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Jobs Graph -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4">Job Postings</h3>
-                        <canvas id="jobsChart"></canvas>
-                    </div>
-                    
-                    <!-- Applicants Graph -->
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4">Applicants</h3>
-                        <canvas id="applicantsChart"></canvas>
-                    </div>
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold mb-4 md:mb-0">List of Job Applications</h2>
+                    <form method="GET" class="flex w-full md:w-auto">
+                        <input type="text" name="search" class="border border-gray-300 rounded-l-lg p-2 w-full md:w-64" 
+                               placeholder="Search..." value="<?php echo htmlspecialchars($search); ?>">
+                        <button type="submit" class="bg-orange-600 text-white px-4 py-2 rounded-r-lg">Search</button>
+                    </form>
                 </div>
 
-                <!-- Chart.js Script -->
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <script>
-                    // Sample data - replace with actual data from your backend
-                    const jobsData = {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                        datasets: [{
-                            label: 'Job Postings',
-                            data: [12, 19, 3, 5, 2, 3],
-                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                            borderColor: 'rgba(255, 159, 64, 1)',
-                            borderWidth: 1
-                        }]
-                    };
+                <!-- Analytics section -->
+                <?php include '../template/jobanaytics.php'; ?>
 
-                    const applicantsData = {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                        datasets: [{
-                            label: 'Applicants',
-                            data: [50, 60, 70, 180, 190, 220],
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    };
-
-                    // Jobs Chart
-                    new Chart(document.getElementById('jobsChart'), {
-                        type: 'bar',
-                        data: jobsData,
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-
-                    // Applicants Chart
-                    new Chart(document.getElementById('applicantsChart'), {
-                        type: 'line',
-                        data: applicantsData,
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
-                    });
-                </script>
-
-
-                <!-- Table to display applications -->
+                <!-- Applications Table -->
                 <div class="overflow-x-auto">
                     <table class="min-w-full bg-white rounded-lg shadow-md">
                         <thead>
                             <tr class="bg-orange-600 text-white">
                                 <th class="py-3 px-6 text-left">Name</th>
-                                <th class="py-3 px-6 text-left">Applied</th>
+                                <th class="py-3 px-6 text-left">Applied Date</th>
                                 <th class="py-3 px-6 text-left">Email</th>
                                 <th class="py-3 px-6 text-left">Phone</th>
                                 <th class="py-3 px-6 text-left">Resume</th>
@@ -147,63 +102,56 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Sample row (data should be dynamically populated) -->
+                            <?php 
+                            if ($result && $result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    $applied_date = date('M d, Y', strtotime($row['applied_at']));
+                            ?>
                             <tr class="border-b">
-                                <td class="py-4 px-6">John Doe</td>
-                                <td class="py-4 px-6">Mechanical Engineer</td>
-                                <td class="py-4 px-6">johndoe@example.com</td>
-                                <td class="py-4 px-6">+1234567890</td>
+                                <td class="py-4 px-6"><?php echo htmlspecialchars($row['name']); ?></td>
+                                <td class="py-4 px-6"><?php echo $applied_date; ?></td>
+                                <td class="py-4 px-6"><?php echo htmlspecialchars($row['email']); ?></td>
+                                <td class="py-4 px-6"><?php echo htmlspecialchars($row['phone'] ?? 'N/A'); ?></td>
+                                
                                 <td class="py-4 px-6">
-                                    <a href="#" class="text-blue-500 hover:underline">Download Resume</a>
+                                    <?php if (!empty($row['resume_path'])): ?>
+                                    <a href="<?php echo htmlspecialchars($row['resume_path']); ?>" 
+                                    class="text-blue-500 hover:underline" target="_blank" download>
+                                        Download Resume
+                                    </a>
+                                    <?php else: ?>
+                                    <span class="text-gray-500">No resume</span>
+                                    <?php endif; ?>
                                 </td>
                                 <td class="py-4 px-6">
-                                    <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full text-xs">Accepted</span>
-                                    <span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Rejected</span>
+                                    <select class="status-dropdown bg-cyan-200 text-cyan-800 py-1 px-3 rounded-full text-xs" 
+                                            data-id="<?php echo $row['id']; ?>">
+                                        <option value="New" <?php echo $row['status'] == 'New' ? 'selected' : ''; ?>>New</option>
+                                        <option value="Visited" <?php echo $row['status'] == 'Visited' ? 'selected' : ''; ?>>Visited</option>
+                                    </select>
                                 </td>
                                 <td class="py-4 px-6 flex md:flex-row flex-col md:space-y-0 space-y-2 items-center justify-start md:space-x-2">
-                                    <button class="bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-600 view-details flex" data-name="Jane Smith" data-email="janesmith@example.com" data-phone="+0987654321" data-status="Accepted">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill mt-1 mr-1" viewBox="0 0 16 16">
-                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                                        </svg> 
-                                        View
-                                    </button>
-                                    <button class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill mt-1 mr-1" viewBox="0 0 16 16">
-                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                                        </svg>    
+                                <button class="bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-600 view-details"
+                                        data-id="<?php echo $row['id']; ?>"
+                                        data-name="<?php echo htmlspecialchars($row['name']); ?>"
+                                        data-email="<?php echo htmlspecialchars($row['email']); ?>"
+                                        data-phone="<?php echo htmlspecialchars($row['phone'] ?? 'N/A'); ?>"
+                                        data-status="<?php echo htmlspecialchars($row['status']); ?>"
+                                        data-date="<?php echo $applied_date; ?>">
+                                    View
+                                </button>
+                                    <button class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 delete-application flex"
+                                            data-id="<?php echo $row['id']; ?>">
                                         Delete
                                     </button>
                                 </td>
                             </tr>
-                            <tr class="border-b">
-                                <td class="py-4 px-6">Jane Smith</td>
-                                <td class="py-4 px-6">Geological Engineer</td>
-                                <td class="py-4 px-6">janesmith@example.com</td>
-                                <td class="py-4 px-6">+0987654321</td>
-                                <td class="py-4 px-6">
-                                    <a href="#" class="text-blue-500 hover:underline">Download Resume</a>
-                                </td>
-                                <td class="py-4 px-6">
-                                    <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full text-xs">Accepted</span>
-                                    <span class="bg-red-200 text-red-800 py-1 px-3 rounded-full text-xs">Rejected</span>
-                                </td>
-                                <td class="py-4 px-6 flex md:flex-row flex-col md:space-y-0 space-y-2 items-center justify-start md:space-x-2">
-                                    <button class="bg-orange-500 text-white px-3 py-1 rounded-lg hover:bg-orange-600 view-details flex" data-name="Jane Smith" data-email="janesmith@example.com" data-phone="+0987654321" data-status="Accepted">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill mt-1 mr-1" viewBox="0 0 16 16">
-                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                                        </svg> 
-                                        View
-                                    </button>
-                                    <button class="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600 flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill mt-1 mr-1" viewBox="0 0 16 16">
-                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
-                                        </svg>    
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
+                            <?php 
+                                }
+                            } else {
+                                echo "<tr><td colspan='7' class='py-4 px-6 text-center'>No applications found</td></tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -211,51 +159,148 @@
 
             <!-- Modal -->
             <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" id="closeModal">&times;</span>
-                    <h2 class="text-xl font-semibold mb-4">Application Details</h2>
-                    <p><strong>Name:</strong> <span id="modal-name"></span></p>
-                    <p><strong>Email:</strong> <span id="modal-email"></span></p>
-                    <p><strong>Phone:</strong> <span id="modal-phone"></span></p>
-                    <p><strong>Status:</strong> <span id="modal-status"></span></p>
-                </div>
-            </div>
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2 class="text-xl font-semibold mb-4">Application Details</h2>
+        <p><strong>Name:</strong> <span id="modal-name"></span></p>
+        <p><strong>Email:</strong> <span id="modal-email"></span></p>
+        <p><strong>Phone:</strong> <span id="modal-phone"></span></p>
+        <p><strong>Applied Date:</strong> <span id="modal-date"></span></p>
+        <p>
+            <strong>Status:</strong> 
+            <select id="modal-status-dropdown" class="bg-cyan-200 text-cyan-800 py-1 px-3 rounded-full text-xs">
+                <option value="New">New</option>
+                <option class="bg-orange-600 text-white py-1 px-3 rounded-full text-xs" value="Visited">Visited</option>
+            </select>
+        </p>
+        <button id="update-status-btn" class="bg-orange-600 text-white px-4 py-2 mt-4 rounded-lg">Update Status</button>
+    </div>
+</div>
+
+
+
 
         </div>
     </div>
 
     <script>
-        $(document).ready(function() {
-            // Toggle sidebar visibility
-            $('#menu-toggle').click(function() {
-                $('#sidebar').toggleClass('-translate-x-full');
-            });
+    $(document).ready(function() {
+        let currentApplicationId; // Variable to store the current application ID
 
-            $('#close-btn').click(function() {
-                $('#sidebar').addClass('-translate-x-full');
-            });
+        // Toggle sidebar visibility
+        $('#menu-toggle').click(function() {
+            $('#sidebar').toggleClass('-translate-x-full');
+        });
 
-            // Open modal with application details
-            $('.view-details').click(function() {
-                $('#modal-name').text($(this).data('name'));
-                $('#modal-email').text($(this).data('email'));
-                $('#modal-phone').text($(this).data('phone'));
-                $('#modal-status').text($(this).data('status'));
-                $('#myModal').fadeIn();
-            });
+        $('#close-btn').click(function() {
+            $('#sidebar').addClass('-translate-x-full');
+        });
 
-            // Close modal
-            $('#closeModal').click(function() {
-                $('#myModal').fadeOut();
-            });
+        // Open modal with application details
+        $('.view-details').click(function() {
+            $('#modal-name').text($(this).data('name'));
+            $('#modal-email').text($(this).data('email'));
+            $('#modal-phone').text($(this).data('phone'));
+            $('#modal-date').text($(this).data('date'));
+            
+            currentApplicationId = $(this).data('id'); // Capture the application ID for modal updates
+            $('#modal-status-dropdown').val($(this).data('status'));
+            
+            $('#myModal').fadeIn().css('display', 'flex');
+        });
 
-            // Close modal when clicking outside of modal
-            $(window).click(function(event) {
-                if ($(event.target).is('#myModal')) {
+        // Handle modal status change and update database
+        $('#update-status-btn').click(function() {
+            const newStatus = $('#modal-status-dropdown').val();
+            $.ajax({
+                url: 'update_status.php',
+                type: 'POST',
+                data: { id: currentApplicationId, status: newStatus },
+                success: function(response) {
+                    alert('Status updated successfully!');
+                    $(`.status-dropdown[data-id='${currentApplicationId}']`).val(newStatus); // Update table dropdown
+                    $(`.view-details[data-id='${currentApplicationId}']`).data('status', newStatus); // Update modal status
                     $('#myModal').fadeOut();
+                },
+                error: function() {
+                    alert('Failed to update status.');
                 }
             });
         });
-    </script>
+
+        // Handle status dropdown change in table
+        $('.status-dropdown').change(function() {
+            const status = $(this).val();
+            const applicationId = $(this).data('id');
+            $.ajax({
+                url: 'update_status.php',
+                type: 'POST',
+                data: { id: applicationId, status: status },
+                success: function(response) {
+                    alert('Status updated successfully!');
+                    $(`.view-details[data-id='${applicationId}']`).data('status', status); // Sync modal status
+                },
+                error: function() {
+                    alert('Failed to update status.');
+                }
+            });
+        });
+
+        // Close modal
+        $('#closeModal').click(function() {
+            $('#myModal').fadeOut();
+        });
+
+        // Close modal when clicking outside
+        $(window).click(function(event) {
+            if ($(event.target).is('#myModal')) {
+                $('#myModal').fadeOut();
+            }
+        });
+
+        // Delete application
+        // $('.delete-application').click(function() {
+        //     if (confirm('Are you sure you want to delete this application?')) {
+        //         const id = $(this).data('id');
+        //         $.ajax({
+        //             url: 'delete_application.php',
+        //             type: 'POST',
+        //             data: { id: id },
+        //             success: function(response) {
+        //                 alert('Application deleted successfully!');
+        //                 location.reload();
+        //             },
+        //             error: function() {
+        //                 alert('Failed to delete application.');
+        //             }
+        //         });
+        //     }
+        // });
+
+        $('.delete-application').click(function() {
+    if (confirm('Are you sure you want to delete this application?')) {
+        const id = $(this).data('id');
+        $.ajax({
+            url: 'delete_application.php',
+            type: 'POST',
+            data: { id: id },
+            success: function(response) {
+                if (response.trim() === "Success") {
+                    alert('Application deleted successfully!');
+                    location.reload();
+                } else {
+                    alert('Error: ' + response);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert('Failed to delete application. Error: ' + error);
+            }
+        });
+    }
+});
+
+    });
+</script>
+
 </body>
 </html>

@@ -2,13 +2,13 @@
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Database configuration
-    $host = 'localhost';
-    $username = 'root';
-    $password = '';
-    $database = 'dvsmining_db';
+    $servername = "localhost";
+    $username = "u345348146_DVSMining";
+    $password = "Hitesh1100@";
+    $dbname = "u345348146_DVSMining";
 
     // Connect to the database
-    $conn = new mysqli($host, $username, $password, $database);
+    $conn = new mysqli($servername, $username, $password, $database);
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }

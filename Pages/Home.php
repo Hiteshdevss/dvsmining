@@ -93,58 +93,49 @@ $conn->close();
             class="text-gray-900 text-lg text-justify md:w-1/2"
             data-aos="fade-up"
           >
-            At DVSMining, we are dedicated to sustainable and innovative mining
-            solutions that prioritize both efficiency and environmental
-            responsibility. Our team of experts is committed to pushing the
-            boundaries of the mining industry, delivering top-notch services
-            that meet the evolving needs of our clients. With years of
-            experience and a passion for excellence, we are your trusted partner
-            in mining operations worldwide. DVS Mining is committed to providing
-            end-to-end mining solutions and also creates abiding sustainable
-            value for stakeholders and companies at a global pitch. Our robust
-            portfolio consists of reliable mining management services that
-            include Design, Development, Engineering, Construction and Financial
-            Evaluation of small or large-scale mining projects.
+          At DVS Mining, we specialize in delivering comprehensive and innovative mining solutions that combine operational efficiency with environmental sustainability. With expertise in both opencast and underground mining, we cater to the diverse needs of clients worldwide. Our opencast mining services include drilling, blasting, and advanced material handling, while our underground mining operations focus on techniques such as shaft sinking, drilling, blasting, level development, raising, winding, and gradient slope management. We also excel in incline, decline, portal, and tunnel mining, ensuring precise and effective extraction methods tailored to every project.
+          <br><br>
+          In addition to mining operations, our focus on design engineering sets us apart. Using state-of-the-art tools like Numerical Modeling (FLAC), we deliver solutions for slope stability, shaft sinking, and headgear engineering. Our expertise extends to designing portals and decline mining systems, ensuring efficiency, safety, and adaptability to unique geological conditions.
+          <br><br>
+          At DVS Mining, innovation and sustainability drive everything we do. By integrating cutting-edge technologies and best practices, we strive to minimize environmental impact while maximizing operational safety and productivity. Our experienced team works diligently to provide end-to-end solutions, from initial design and development to on-site implementation, ensuring timely and quality results.
           </p>
         </div>
       </div>
 </section>
 
-<!-- KPA Section -->
-<section class="text-gray-600 body-font mr-0 md:mr-24 ml-0 md:ml-24 -mt-10">
-      <div class="container px-5 py-5 mx-auto">
-        <!-- Wrapper for horizontal scrolling -->
-        <div class="flex flex-nowrap md:flex-wrap -m-4 overflow-x-auto">
-          <!-- Card 1 -->
-          <div class="p-4 min-w-[250px] md:w-1/3 flex-shrink-0" data-aos="flip-up"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="1000">
-            <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-10 rounded-lg overflow-hidden text-center relative bg-[url('https://www.bworldonline.com/wp-content/uploads/2024/05/heavy-machinery-used-construction-industry-engineering.jpg')] bg-gray-600 hover:bg-orange-500 bg-cover bg-center bg-blend-multiply">
-              <h1 class="title-font sm:text-2xl text-xl font-medium text-white mb-3">Sustainability</h1>
-              <p class="leading-relaxed mb-3 text-white">We care for the environment</p>
-            </div>
-          </div>
-          <!-- Card 2 -->
-          <div class="p-4 min-w-[250px] md:w-1/3 flex-shrink-0" data-aos="flip-up"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="1000">
-            <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-10 rounded-lg overflow-hidden text-center relative bg-[url('https://www.bworldonline.com/wp-content/uploads/2024/05/heavy-machinery-used-construction-industry-engineering.jpg')] bg-gray-600 hover:bg-orange-500 bg-cover bg-center bg-blend-multiply">
-              <h1 class="title-font sm:text-2xl text-xl font-medium text-white mb-3">Investor Relations</h1>
-              <p class="leading-relaxed mb-3 text-white">We care for our investors</p>
-            </div>
-          </div>
-          <!-- Card 3 -->
-          <div class="p-4 min-w-[250px] md:w-1/3 flex-shrink-0" data-aos="flip-up"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="1000">
-            <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-10 rounded-lg overflow-hidden text-center relative bg-[url('https://www.bworldonline.com/wp-content/uploads/2024/05/heavy-machinery-used-construction-industry-engineering.jpg')] bg-gray-600 hover:bg-orange-500 bg-cover bg-center bg-blend-multiply">
-              <h1 class="title-font sm:text-2xl text-xl font-medium text-white mb-3">Code of Conduct</h1>
-              <p class="leading-relaxed mb-3 text-white">We care for our people</p>
-            </div>
-          </div>
+<div class="p-1 md:p-0 bg-orange-100">
+    <div class="flex flex-wrap justify-between gap-4 p-4 mx-0 md:mx-36">
+        <!-- Vision Card -->
+        <div class="bg-white shadow-md rounded-lg p-6 flex-1 max-w-xs">
+            <img src="../Assets/Icons/vision.png" class="mb-2 h-16" alt="Our Vision Icon">
+            <h2 class="text-xl font-bold mb-2">Our Vision</h2>
+            <p class="text-gray-700">Dedicated to innovation and excellence in all we do.</p>
         </div>
-      </div>
-</section>
+        
+        <!-- Mission Card -->
+        <div class="bg-white shadow-md rounded-lg p-6 flex-1 max-w-xs">
+            <img src="../Assets/Icons/mission.png" class="mb-2 h-16" alt="Our Mission Icon">
+            <h2 class="text-xl font-bold mb-2">Our Mission</h2>
+            <p class="text-gray-700">Delivering superior solutions that exceed expectations.</p>
+        </div>
+        
+        <!-- Values Card -->
+        <div class="bg-white shadow-md rounded-lg p-6 flex-1 max-w-xs">
+            <img src="../Assets/Icons/value.png" class="mb-2 h-16" alt="Our Values Icon">
+            <h2 class="text-xl font-bold mb-2">Our Value</h2>
+            <p class="text-gray-700">Upholding integrity, respect, and teamwork always.</p>
+        </div>
+        
+        <!-- Promise Card -->
+        <div class="bg-white shadow-md rounded-lg p-6 flex-1 max-w-xs">
+            <img src="../Assets/Icons/cross-fingers.png" class="mb-2 h-16" alt="Our Promise Icon">
+            <h2 class="text-xl font-bold mb-2">Our Promise</h2>
+            <p class="text-gray-700">Committed to quality and continuous improvement.</p>
+        </div>
+    </div>
+</div>
+
+
 
 
 <!-- Activly Working -->

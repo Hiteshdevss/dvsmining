@@ -44,7 +44,7 @@ $conn->close();
     <img src="../Assets/Images/Banner/Mobile/Team.png" alt="" class="mt-2 md:hidden">
   </div>
 
-  <!-- Founders Section -->
+<!-- Founders Section -->
 <section class="mr-5 md:mr-36 ml-5 md:ml-36 py-8 mt-10">
     <div class="p-6 rounded-2xl" data-aos="fade-up">
         <h2 class="text-4xl md:text-5xl font-bold mb-1 text-center text-orange-600 mb-4">
@@ -53,37 +53,77 @@ $conn->close();
         <p class="mb-6 text-center text-xl">
             The minds behind DVSMining's success.
         </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Founder 1 -->
             <div class="text-center" data-aos="fade-up">
                 <img src="https://dummyimage.com/402x402/000/fff" alt="Founder 1" class="w-48 h-48 rounded-full mx-auto mb-4">
-                <h2 class="title-font font-medium text-2xl text-gray-900">Vijay Somkuwar</h2>
-              <h3 class="text-orange-600 mb-3 font-bold text-md">Finance Director</h3>
+                <h2 class="title-font font-medium text-2xl text-gray-900">Ratandip D. Somkuwar</h2>
+                <h3 class="text-orange-600 mb-3 font-bold text-md">Founder & MD</h3>
                 <p class="mt-2 text-sm text-gray-600">
-                    John is a visionary leader with over 20 years of experience in the mining industry.
+                    I have spent over two decades in the mining sector, gaining invaluable experience across various continents. My passion for the industry drives my focus on leveraging financial acumen and strategic vision to grow DVSMining. As the Managing Director, I focus on building long-term relationships and ensuring that the company remains at the forefront of mining innovation. Sustainability and financial growth are at the core of my leadership approach, and I believe in making responsible mining a standard, not an exception.
                 </p>
             </div>
             <!-- Founder 2 -->
             <div class="text-center" data-aos="fade-up">
                 <img src="https://dummyimage.com/402x402/000/fff" alt="Founder 2" class="w-48 h-48 rounded-full mx-auto mb-4">
-                <h2 class="title-font font-medium text-2xl text-gray-900">Vijay Somkuwar</h2>
-              <h3 class="text-orange-600 mb-3 font-bold text-md">Finance Director</h3>
+                <h2 class="title-font font-medium text-2xl text-gray-900">Pankaj P. Wanjari</h2>
+                <h3 class="text-orange-600 mb-3 font-bold text-md">Founder & MD</h3>
                 <p class="mt-2 text-sm text-gray-600">
-                    Jane oversees daily operations, ensuring everything runs smoothly while focusing on sustainability.
-                </p>
-            </div>
-            <!-- Founder 3 -->
-            <div class="text-center" data-aos="fade-up">
-                <img src="https://dummyimage.com/402x402/000/fff" alt="Founder 3" class="w-48 h-48 rounded-full mx-auto mb-4">
-                <h2 class="title-font font-medium text-2xl text-gray-900">Vijay Somkuwar</h2>
-              <h3 class="text-orange-600 mb-3 font-bold text-md">Finance Director</h3>
-                <p class="mt-2 text-sm text-gray-600">
-                    Michael is responsible for leading our technical innovation and advancements in mining technology.
+                    With over 20 years in mining operations, my journey has always been centered around optimizing production processes and introducing cutting-edge technologies. I co-founded DVSMining with a vision to modernize the mining industry through efficiency and innovation. My role as Founder and Managing Director allows me to oversee operations, ensuring that we maintain high safety standards and environmental care. I am committed to ensuring that DVSMining not only thrives in the market but also sets new benchmarks for sustainability and operational excellence.
                 </p>
             </div>
         </div>
     </div>
 </section>
+
+
+<!-- Director Section -->
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-5">
+      <h2 class="text-3xl md:text-5xl font-bold mb-1 text-center text-orange-600 mb-4">Our Directors</h2>
+      <p class="mb-6 text-center text-xl text-gray-700">Meet the experts driving innovation and success at DVS Mining</p>
+    </div>
+
+    <!-- Center the directors on mobile -->
+    <div class="flex flex-wrap justify-center -m-4">
+      <!-- Director 1 -->
+      <div class="p-4 w-full md:w-1/2 lg:w-1/4">
+        <div class="h-full flex flex-col items-center text-center">
+          <img alt="director" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
+          <div class="w-full">
+            <h2 class="title-font font-medium text-2xl text-gray-900">Ratnadip D Somkuwar</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Director - Operation</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Director 2 -->
+      <div class="p-4 w-full md:w-1/2 lg:w-1/4">
+        <div class="h-full flex flex-col items-center text-center">
+          <img alt="director" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
+          <div class="w-full">
+            <h2 class="title-font font-medium text-2xl text-gray-900">Pankaj P Wanjari</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Director - Execution</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Director 3 -->
+      <div class="p-4 w-full md:w-1/2 lg:w-1/4">
+        <div class="h-full flex flex-col items-center text-center">
+          <img alt="director" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
+          <div class="w-full">
+            <h2 class="title-font font-medium text-2xl text-gray-900">Vijay K Somkuwar</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Director - Finance</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 
 <!-- Team Section -->
@@ -101,8 +141,8 @@ $conn->close();
         <div class="h-full flex flex-col items-center text-center">
           <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
           <div class="w-full">
-            <h2 class="title-font font-medium text-2xl text-gray-900">Vijay Somkuwar</h2>
-            <h3 class="text-orange-600 mb-3 font-bold text-md">Finance Director</h3>
+            <h2 class="title-font font-medium text-2xl text-gray-900">Dilip R Dekate</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Consultant- Mining</h3>
           </div>
         </div>
       </div>
@@ -112,8 +152,8 @@ $conn->close();
         <div class="h-full flex flex-col items-center text-center">
           <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
           <div class="w-full">
-            <h2 class="title-font font-medium text-2xl text-gray-900">Ratnadip Somkuwar</h2>
-            <h3 class="text-orange-600 mb-3 font-bold text-md">Operational Director</h3>
+            <h2 class="title-font font-medium text-2xl text-gray-900">Naman Soni</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Mining Engineer</h3>
           </div>
         </div>
       </div>
@@ -123,8 +163,8 @@ $conn->close();
         <div class="h-full flex flex-col items-center text-center">
           <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
           <div class="w-full">
-            <h2 class="title-font font-medium text-2xl text-gray-900">Shrinivas</h2>
-            <h3 class="text-orange-600 mb-3 font-bold text-md">Lead Developer</h3>
+            <h2 class="title-font font-medium text-2xl text-gray-900">Ramesh Babu</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Consultant- Mining</h3>
           </div>
         </div>
       </div>
@@ -134,8 +174,8 @@ $conn->close();
         <div class="h-full flex flex-col items-center text-center">
           <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
           <div class="w-full">
-            <h2 class="title-font font-medium text-2xl text-gray-900">Pankaj Wanjari</h2>
-            <h3 class="text-orange-600 mb-3 font-bold text-md">Operational Director</h3>
+            <h2 class="title-font font-medium text-2xl text-gray-900">S N Mali</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Consultant- Mining</h3>
           </div>
         </div>
       </div>
@@ -145,8 +185,8 @@ $conn->close();
         <div class="h-full flex flex-col items-center text-center">
           <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
           <div class="w-full">
-            <h2 class="title-font font-medium text-2xl text-gray-900">SK Jafer</h2>
-            <h3 class="text-orange-600 mb-3 font-bold text-md">Mining Advisor</h3>
+            <h2 class="title-font font-medium text-2xl text-gray-900">G K Pradaan</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Consultant- Advisor cum mining</h3>
           </div>
         </div>
       </div>
@@ -156,8 +196,8 @@ $conn->close();
         <div class="h-full flex flex-col items-center text-center">
           <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
           <div class="w-full">
-            <h2 class="title-font font-medium text-2xl text-gray-900">Marin Sir Wevin</h2>
-            <h3 class="text-orange-600 mb-3 font-bold text-md">Mining Plan & Design</h3>
+            <h2 class="title-font font-medium text-2xl text-gray-900">Srinivasalu Babu</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Consultant- mining</h3>
           </div>
         </div>
       </div>
@@ -167,33 +207,13 @@ $conn->close();
         <div class="h-full flex flex-col items-center text-center">
           <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
           <div class="w-full">
-            <h2 class="title-font font-medium text-2xl text-gray-900">Shashank Sinha</h2>
-            <h3 class="text-orange-600 mb-3 font-bold text-md">Consultant Geologist</h3>
+            <h2 class="title-font font-medium text-2xl text-gray-900">S K Jafer</h2>
+            <h3 class="text-orange-600 mb-3 font-bold text-md">Consultant - mining</h3>
           </div>
         </div>
       </div>
 
-      <!-- Team member 8 -->
-      <div class="p-4 w-full md:w-1/2 lg:w-1/4">
-        <div class="h-full flex flex-col items-center text-center">
-          <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
-          <div class="w-full">
-            <h2 class="title-font font-medium text-2xl text-gray-900">Sushil Kumar Das</h2>
-            <h3 class="text-orange-600 mb-3 font-bold text-md">Mining, Planning & Designing Consultant</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- Team member 9 -->
-      <div class="p-4 w-full md:w-1/2 lg:w-1/4">
-        <div class="h-full flex flex-col items-center text-center">
-          <img alt="team" class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4" src="https://dummyimage.com/200x200">
-          <div class="w-full">
-            <h2 class="title-font font-medium text-2xl text-gray-900">Warun H. Bhoyar</h2>
-            <h3 class="text-orange-600 mb-3 font-bold text-md">Mechanical Engineer</h3>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </section>
