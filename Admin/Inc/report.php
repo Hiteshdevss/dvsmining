@@ -2,10 +2,10 @@
 $servername = "localhost";
 $username = "root"; // your MySQL username
 $password = ""; // your MySQL password
-$dbname = "dvsmining_db";
+$database = "dvsmining_db";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $database);
 
 // Check connection
 if ($conn->connect_error) {

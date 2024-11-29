@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Website Launching Soon</title>
+  <link rel="icon" type="image/x-icon" href="./Assets/Images/DVS_Logo.png">
+  <style>
+    /* Ensures the video covers the entire background */
+    video#bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* Places the video behind other content */
+    }
+
+    body {
+      overflow: hidden; /* Prevents scrolling with the fixed video */
+    }
+  </style>
+  <script>
+    // Countdown Timer Script
+    document.addEventListener("DOMContentLoaded", () => {
+      const countdown = document.getElementById("countdown");
+      const launchMessage = document.getElementById("launchMessage");
+
+      // Check if a target time already exists in localStorage
+      let targetTime = localStorage.getItem("targetTime");
+
+      if (!targetTime) {
+        // Set a new target time 12 hours from now and save it to localStorage
+        targetTime = new Date().getTime() + 12 * 60 * 60 * 1000;
+        localStorage.setItem("targetTime", targetTime);
+      } else {
+        targetTime = parseInt(targetTime, 10);
+      }
+
+      const updateTimer = () => {
+        const now = new Date().getTime();
+        const distance = targetTime - now;
+
+        if (distance < 0) {
+          countdown.style.display = "none"; // Hide countdown
+          launchMessage.style.display = "block"; // Show launch message
+          return;
+        }
+
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdown.innerHTML = `
+          <span class="text-4xl font-bold">${hours.toString().padStart(2, '0')}</span>h :
+          <span class="text-4xl font-bold">${minutes.toString().padStart(2, '0')}</span>m :
+          <span class="text-4xl font-bold">${seconds.toString().padStart(2, '0')}</span>s
+        `;
+      };
+
+      setInterval(updateTimer, 1000);
+      updateTimer();
+    });
+  </script>
+</head>
+<body class="flex items-center justify-center h-screen">
+
+  <!-- Background Video -->
+  <video id="bg-video" autoplay muted loop>
+    <source src="./bg.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Content Section -->
+  <div class="text-center bg-gradient-to-b from-orange-100 via-orange-100 via-orange-200 via-orange-300 via-orange-400 to-orange-400
+  bg-opacity-90 shadow-2xl rounded-3xl p-10 max-w-lg mx-auto transform hover:scale-105 transition-transform duration-500 pt-24 pb-28">
+    <img src="./Assets/Icons/D-logo.png" alt="Logo" class="mx-auto mb-6 w-44 h-28">
+    <h1 class="text-lg tracking-widest md:text-2xl font-extrabold text-gray-900 mb-8 animate-pulse">✨ We're Launching Soon! ✨</h1>
+    <div id="countdown" class="text-white text-5xl font-extrabold bg-black bg-opacity-40 px-6 py-3 rounded-lg inline-block shadow-lg">Loading...</div>
+    <div id="launchMessage" class="hidden text-2xl font-extrabold text-green-500 mt-4 animate-bounce">
+      🎉 We Are Live Now! 🚀
+    </div>
+    <p class="mt-6 text-md text-black tracking-wider">
+      Stay in the loop! Email us at <a href="mailto:info@dvsmining.com" class="text-orange-800 underline hover:text-yellow-400 transition-colors">info@dvsmining.com</a>.
+    </p>
+  </div>
+
+</body>
+</html>
